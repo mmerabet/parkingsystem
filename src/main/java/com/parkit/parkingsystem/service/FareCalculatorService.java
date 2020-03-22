@@ -33,6 +33,6 @@ public class FareCalculatorService {
     }
     public void calculateFare(Ticket ticket, double discount) {
     	calculateFare(ticket);
-    	ticket.setPrice(ticket.getPrice()*(1-discount/100));
+    	ticket.setPrice(ticket.getPrice()*(1-discount/100f));
     }
 }

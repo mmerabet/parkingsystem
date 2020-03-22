@@ -136,7 +136,7 @@ public class FareCalculatorServiceTest {
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
         fareCalculatorService.calculateFare(ticket,Fare.DISCOUNT_REGULAR_CUSTOMER);
-        assertEquals( (24 * Fare.CAR_RATE_PER_HOUR * 0.95f) , ticket.getPrice());
+        assertEquals( (24 * Fare.CAR_RATE_PER_HOUR * (1-5/100f)) , ticket.getPrice());
     }
     
 }
