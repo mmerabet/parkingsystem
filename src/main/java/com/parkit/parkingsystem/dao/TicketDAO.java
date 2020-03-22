@@ -86,4 +86,26 @@ public class TicketDAO {
         }
         return false;
     }
+    
+    public boolean isRegularCustomer(String vehicleRegNumber) {
+        Connection con = null;
+        boolean customerIsRegular = false;
+        try {
+            con = dataBaseConfig.getConnection();
+            PreparedStatement ps = con.prepareStatement(DBConstants.IS_REGULAR_CUSTOMER);
+            ps.setString(1,vehicleRegNumber);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+            	customerIsRegular = rs.getBoolean(1);
+            }
+            dataBaseConfig.closeResultSet(rs);
+            dataBaseConfig.closePreparedStatement(ps);
+        }catch (Exception ex){
+            logger.error("Error fetching next available slot",ex);
+        }finally {
+            dataBaseConfig.closeConnection(con);
+        }
+        return customerIsRegular;
+    }
+    
 }
